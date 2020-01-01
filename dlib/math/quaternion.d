@@ -374,12 +374,12 @@ struct Quaternion(T)
         {
             Quaternion!(T) q;
 
-            T sr = sin(e.x * 0.5);
-            T cr = cos(e.x * 0.5);
-            T sp = sin(e.y * 0.5);
-            T cp = cos(e.y * 0.5);
-            T sy = sin(e.z * 0.5);
-            T cy = cos(e.z * 0.5);
+            T sr = sin(e.x / 2);
+            T cr = cos(e.x / 2);
+            T sp = sin(e.y / 2);
+            T cp = cos(e.y / 2);
+            T sy = sin(e.z / 2);
+            T cy = cos(e.z / 2);
 
             q.w =  (cy * cp * cr) + (sy * sp * sr);
             q.x = -(sy * sp * cr) + (cy * cp * sr);
@@ -472,7 +472,7 @@ struct Quaternion(T)
 Quaternion!(T) rotationQuaternion(T)(uint rotaxis, T theta)
 {
     Quaternion!(T) res = Quaternion!(T).identity;
-    T thetaOver2 = theta * 0.5;
+    T thetaOver2 = theta / 2;
 
     switch (rotaxis)
     {
@@ -508,7 +508,7 @@ Quaternion!(T) rotationQuaternion(T)(Vector!(T,3) rotaxis, T theta)
 {
     Quaternion!(T) res;
 
-    T thetaOver2 = theta * 0.5;
+    T thetaOver2 = theta / 2;
     T sinThetaOver2 = sin(thetaOver2);
 
     res.w = cos(thetaOver2);
@@ -725,4 +725,4 @@ do
  * Predefined quaternion type aliases
  */
 alias Quaternionf = Quaternion!(float);
-alias Quaterniond = Quaternion!(double);
+//alias Quaterniond = Quaternion!(double);
