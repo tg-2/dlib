@@ -30,7 +30,8 @@ module dlib.math.quaternion;
 
 private
 {
-    import std.math;
+	//import std.math;
+	import dlib.math.portable;
     import std.traits;
 
     import dlib.math.vector;

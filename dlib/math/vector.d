@@ -31,7 +31,8 @@ module dlib.math.vector;
 private
 {
     import std.conv;
-    import std.math;
+    //import std.math;
+    import dlib.math.portable;
     import std.random;
     import std.range;
     import std.format;
@@ -884,7 +885,7 @@ do
  */
 Vector!(T,2) randomUnitVector2(T)()
 {
-    float azimuth = uniform(0.0, 1.0) * 2 * PI;
+    float azimuth = uniform(0.0, 1.0) * 2 * pi!T;
     return Vector!(T,2)(cos(azimuth), sin(azimuth));
 }
 
