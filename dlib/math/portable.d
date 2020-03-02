@@ -12,6 +12,8 @@ import std.range,std.algorithm,std.array;
 enum table_size=1000;
 T cubicIntp(alias f,alias df,alias l,alias r,alias table,T)(T x)if(is(T==float)||is(T==double)){
 	if(isNaN(x)||isInfinity(x)) return T.init;
+	if(x<l) x=l;
+	if(x>r) x=r;
 	auto size=table.length-2;
 	auto j=size*(x-l)/(r-l);
 	auto zero=cast(int)floor(j),one=zero+1;
@@ -25,22 +27,22 @@ T cubicIntp(alias f,alias df,alias l,alias r,alias table,T)(T x)if(is(T==float)|
 
 T fmod(T)(T x,T y)if(is(T==float)||is(T==double)){
 	auto m=floor(x/y);
-	return x-y*m;
+	return max(0,x-y*m);
 }
 
 T sin(T)(T x)if(is(T==float)){
-	if(x<0) return -sin(-x);
 	x=fmod(x,2*pi!T);
-	if(x>pi!T) return -sin(2*pi!T-x);
+	if(x<0) return -sin(-x);
+	if(x>pi!T) return -sin(min(pi!T,2*pi!T-x));
 	return cubicIntp!(std.math.sin,std.math.cos,0,pi!T,sinfTable)(x);
 }
 T asin(T)(T x){
 	return atan2(x,sqrt(1-x*x));
 }
 T cos(T)(T x)if(is(T==float)){
-	if(x<0) return cos(-x);
 	x=fmod(x,2*pi!T);
-	if(x>pi!T) return cos(2*pi!T-x);
+	if(x<0) return cos(-x);
+	if(x>pi!T) return cos(min(pi!T,2*pi!T-x));
 	return cubicIntp!(std.math.cos,(x)=>-std.math.sin(x),0,pi!T,cosfTable)(x);
 }
 
