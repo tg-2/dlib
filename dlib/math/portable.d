@@ -5,6 +5,7 @@ static import std.math;
 static import c99=core.stdc.math;
 alias floor=std.math.floor;
 alias ceil=std.math.ceil;
+alias round=std.math.round;
 
 enum pi(T)=cast(T)3.14159265358979323846264338327950288L;
 
