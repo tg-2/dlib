@@ -662,8 +662,8 @@ Quaternion!(T) slerp(T)(
     {
         T sinOmega = sqrt(1.0 - (cosOmega * cosOmega));
         T omega = atan2(sinOmega, cosOmega);
-        T oneOverSinOmega = 1.0 / sinOmega;
-        k0 = sin((1.0 - t) * omega) * oneOverSinOmega;
+        T oneOverSinOmega = 1 / sinOmega;
+        k0 = sin((1 - t) * omega) * oneOverSinOmega;
         k1 = sin(t * omega) * oneOverSinOmega;
     }
 
