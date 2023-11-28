@@ -69,7 +69,8 @@ version(Posix)
             if (dir == null)
                 return null;        // FIXME: throw an error
 
-            return new DirRange(delegate bool(out DirEntry de)
+            version(OSX) assert(0);
+            else return new DirRange(delegate bool(out DirEntry de)
             {
                 dirent entry_buf;
                 dirent* entry;
