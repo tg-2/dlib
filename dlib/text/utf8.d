@@ -42,7 +42,7 @@ struct UTF8Decoder
 {
     size_t index = 0;
     int character = 0;
-    string input;
+	const(char)[] input;
 
     int get()
     {
@@ -60,7 +60,7 @@ struct UTF8Decoder
     }
 
     ///
-    this(string str)
+	this(const(char)[] str)
     {
         index = 0;
         character = 0;
