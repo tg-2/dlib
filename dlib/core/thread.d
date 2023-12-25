@@ -44,36 +44,36 @@ version(Windows)
         int    bInheritHandle;
     }
 
-    alias LPTHREAD_START_ROUTINE = extern(Windows) uint function(in void*);
+    alias LPTHREAD_START_ROUTINE = extern(Windows) uint function(const(void)*);
 
     void* CreateThread(
-        in SECURITY_ATTRIBUTES*   lpThreadAttributes,
-        in size_t                 dwStackSize,
-        in LPTHREAD_START_ROUTINE lpStartAddress,
-        in void*                  lpParameter,
-        in uint                   dwCreationFlags,
+        const SECURITY_ATTRIBUTES*   lpThreadAttributes,
+        const size_t                 dwStackSize,
+        const LPTHREAD_START_ROUTINE lpStartAddress,
+        const void*                  lpParameter,
+        const uint                   dwCreationFlags,
         uint*                     lpThreadId
     );
 
     uint WaitForMultipleObjects(
-        in uint nCount,
-        in void** lpHandles,
-        in int bWaitAll,
-        in uint dwMilliseconds
+        const uint nCount,
+        const void** lpHandles,
+        const int bWaitAll,
+        const uint dwMilliseconds
     );
 
     int TerminateThread(
         void* hThread,
-        in uint dwExitCode
+        const uint dwExitCode
     );
 
     int GetExitCodeThread(
-        in void* hThread,
+        const void* hThread,
         uint* lpExitCode
     );
 
     int CloseHandle(
-        in void* hObject
+        const void* hObject
     );
 
     enum INFINITE = uint.max;
@@ -206,7 +206,7 @@ class Thread
 
     version(Windows)
     {
-        extern(Windows) static uint winThreadFunc(in void* lpParam)
+        extern(Windows) static uint winThreadFunc(const void* lpParam)
         {
             Thread t = cast(Thread)lpParam;
             if (t.callFunc)
