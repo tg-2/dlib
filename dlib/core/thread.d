@@ -197,8 +197,9 @@ class Thread
             TerminateThread(winThread, 1);
         }
 
-        version(Posix)
-        {
+        version(Android){
+	        assert(0);
+        }else version(Posix){
             pthread_cancel(posixThread);
             running = false;
         }
