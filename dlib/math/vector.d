@@ -526,6 +526,11 @@ struct Vector(T, int size)
                     foreach (ref component; arrayof)
                         component *= coef;
                 }
+                else
+                {
+                    arrayof[0..$-1] = 0.0;
+                    arrayof[$-1] = 1.0;
+                }
             }
             else
             {
@@ -535,6 +540,11 @@ struct Vector(T, int size)
                     float coef = 1.0 / sqrt(cast(float)lensqr);
                     foreach (ref component; arrayof)
                         component = cast(T)(component * coef);
+                }
+                else
+                {
+                    arrayof[0..$-1] = cast(T)0.0f;
+                    arrayof[$-1] = cast(T)1.0f;
                 }
             }
         }
