@@ -66,7 +66,7 @@ struct Plane
         return p;
     }
 
-    void fromPoints(Vector3f p0, Vector3f p1, Vector3f p2)
+    void fromPoints(Vector3f p0, Vector3f p1, Vector3f p2)@nogc
     {
         Vector3f v0 = p0 - p1;
         Vector3f v1 = p2 - p1;
@@ -87,7 +87,7 @@ struct Plane
         d = -(p.x * x + p.y * y + p.z * z);
     }
 
-    float dot(Vector3f p)
+    float dot(Vector3f p)@nogc
     {
         return x * p.x + y * p.y + z * p.z;
     }
@@ -112,7 +112,7 @@ struct Plane
     * Get the distance from the center of the plane to the given point.
     * This is useful for determining which side of the plane the point is on.
     */
-    float distance(Vector3f p)
+    float distance(Vector3f p)@nogc
     {
         return x * p.x + y * p.y + z * p.z + d;
     }
