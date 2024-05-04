@@ -226,7 +226,7 @@ class GenericSound: Sound
         position = 0;
     }
 
-    override float opIndex(uint chan, ulong pos)
+    override float opIndex(uint chan, ulong pos)@system
     {
         size_t ssize = sampleSize();
         uint sampleChannelSize = _bitDepth / 8;
@@ -234,7 +234,7 @@ class GenericSound: Sound
         return toFloatSample(samplePtr, _format);
     }
 
-    override float opIndexAssign(float s, uint chan, ulong pos)
+    override float opIndexAssign(float s, uint chan, ulong pos)@system
     {
         size_t ssize = sampleSize();
         uint sampleChannelSize = _bitDepth / 8;

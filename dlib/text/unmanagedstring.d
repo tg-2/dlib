@@ -66,7 +66,7 @@ struct String
     /**
      * Construct from zero-terminated C string (ASCII or UTF8)
      */
-    this(const(char)* cStr)
+    this(const(char)* cStr)@system
     {
         size_t offset = 0;
         while(cStr[offset] != 0)
@@ -81,7 +81,7 @@ struct String
     /**
      * Construct from zero-terminated UTF-16 string
      */
-    this(const(wchar)* wStr)
+    this(const(wchar)* wStr)@system
     {
         wchar* utf16 = cast(wchar*)wStr;
         wchar utf16char;

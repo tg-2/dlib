@@ -142,7 +142,7 @@ class MmapPool : Allocator
      *
      * Returns: Data the block points to or $(D_KEYWORD null).
      */
-    private void* findBlock(size_t size) @nogc nothrow
+    private void* findBlock(size_t size) @nogc nothrow @system
     {
         Block block1;
         RegionLoop: for (auto r = head; r !is null; r = r.next)
@@ -364,7 +364,7 @@ class MmapPool : Allocator
      */
     pragma(inline)
     private static void* initializeRegion(size_t size,
-                                          ref Region head) @nogc nothrow
+                                          ref Region head) @nogc nothrow @system
     {
         immutable regionSize = calculateRegionSize(size);
 

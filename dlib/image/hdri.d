@@ -111,7 +111,7 @@ class HDRImage: SuperHDRImage
         allocateData();
     }
 
-    Color4f opIndex(int x, int y)
+    Color4f opIndex(int x, int y)@system
     {
         while(x >= _width) x = _width-1;
         while(y >= _height) y = _height-1;
@@ -127,7 +127,7 @@ class HDRImage: SuperHDRImage
         return Color4f(r, g, b, a);
     }
 
-    Color4f opIndexAssign(Color4f c, int x, int y)
+    Color4f opIndexAssign(Color4f c, int x, int y)@system
     {
         while(x >= _width) x = _width-1;
         while(y >= _height) y = _height-1;

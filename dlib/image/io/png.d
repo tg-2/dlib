@@ -146,7 +146,7 @@ struct AnimationControlChunk
         ubyte[8] bytes;
     }
 
-    void readFromBuffer(ubyte[] data)
+    void readFromBuffer(ubyte[] data)@system
     {
         *(&numFrames) = *(cast(uint*)data.ptr);
         numFrames = bigEndian(numFrames);
@@ -161,7 +161,7 @@ struct OffsetChunk
     int posY;
     ubyte unitSpecifier;
 
-    void readFromBuffer(ubyte[] data)
+    void readFromBuffer(ubyte[] data)@system
     {
         *(&posX) = *(cast(int*)data.ptr);
         posX = bigEndian(posX);
@@ -203,7 +203,7 @@ struct FrameControlChunk
         ubyte[26] bytes;
     }
 
-    void readFromBuffer(ubyte[] data)
+    void readFromBuffer(ubyte[] data)@system
     {
         *(&sequenceNumber) = *(cast(uint*)data.ptr);
         sequenceNumber = bigEndian(sequenceNumber);

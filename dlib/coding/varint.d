@@ -66,7 +66,7 @@ size_t getVarintSize(ulong n)
     );
 }
 
-Varint encodeVarint(ulong n)
+Varint encodeVarint(ulong n)@system
 {
     Varint res;
     res.size = getVarintSize(n);
@@ -84,7 +84,7 @@ Varint encodeVarint(ulong n)
     return res;
 }
 
-ulong decodeVarint(Varint vint)
+ulong decodeVarint(Varint vint)@system
 {
     ulong result = 0;
     int bits = 0;

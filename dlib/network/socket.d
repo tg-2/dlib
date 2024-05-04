@@ -1254,7 +1254,7 @@ class InternetAddress : Address
         anyPort = 0,
     }
 
-    this(in string host, ushort port = anyPort)
+    this(in string host, ushort port = anyPort)@system
     {
         if (getaddrinfoPointer is null || freeaddrinfoPointer is null)
         {

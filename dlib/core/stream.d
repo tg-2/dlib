@@ -229,7 +229,7 @@ class ArrayStream : InputStream
         return pos < size_;
     }
 
-    override size_t readBytes(void* buffer, size_t count)
+    override size_t readBytes(void* buffer, size_t count)@system
     {
         import core.stdc.string;
 

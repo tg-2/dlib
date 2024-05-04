@@ -64,7 +64,7 @@ enum XmlToken
 
 string emptyStr;
 
-string appendChar(string s, dchar ch)
+string appendChar(string s, dchar ch)@system
 {
     char[7] firstByteMark = [0x00, 0x00, 0xC0, 0xE0, 0xF0, 0xF8, 0xFC];
 

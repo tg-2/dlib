@@ -181,7 +181,7 @@ wchar[] convertUTF8toUTF16(string s, bool nullTerm = false)
     return output;
 }
 
-char[] convertUTF16ztoUTF8(wchar* s, bool nullTerm = false)
+char[] convertUTF16ztoUTF8(wchar* s, bool nullTerm = false)@system
 {
     DynamicArray!char array;
     char[] output;

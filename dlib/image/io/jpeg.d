@@ -994,7 +994,7 @@ struct ScanBitStream
 Compound!(SuperImage, string) decodeScanData(
     JPEGImage* jpg,
     InputStream istrm,
-    SuperImageFactory imgFac)
+    SuperImageFactory imgFac)@system
 {
     SuperImage img = imgFac.createImage(jpg.sof0.width, jpg.sof0.height, 3, 8);
 
@@ -1342,7 +1342,7 @@ struct MCU
  * discrete W transform and for the discrete Fourier transform", IEEE Trans. on
  * ASSP, Vol. ASSP- 32, pp. 803-816, Aug. 1984.
  */
-void idct64(int* src)
+void idct64(int* src)@system
 {
     enum blockSize = 64; // A DCT block is 8x8.
 
