@@ -35,6 +35,7 @@ module dlib.memory.mallocator;
 
 import dlib.memory.allocator;
 import core.exception;
+import core.memory;
 import core.stdc.stdlib;
 import std.algorithm.comparison;
 
@@ -58,6 +59,7 @@ class Mallocator : Allocator
             return null;
         }
         auto p = malloc(size);
+        GC.addRange(p, size);
 
         if (!p)
         {
@@ -88,6 +90,7 @@ class Mallocator : Allocator
     {
         if (p !is null)
         {
+            GC.removeRange(p.ptr);
             free(p.ptr);
         }
         return true;
@@ -125,12 +128,14 @@ class Mallocator : Allocator
             p = allocate(size);
             return true;
         }
+        GC.removeRange(p.ptr);
         auto r = realloc(p.ptr, size);
 
         if (!r)
         {
             onOutOfMemoryError();
         }
+        GC.addRange(r, size);
         p = r[0..size];
 
         return true;
@@ -173,6 +178,7 @@ class Mallocator : Allocator
         {
             immutable size = __traits(classInstanceSize, Mallocator);
             void* p = malloc(size);
+            GC.addRange(p,size);
 
             if (p is null)
             {
