@@ -8,6 +8,26 @@ alias ceil=std.math.ceil;
 alias round=std.math.round;
 
 enum pi(T)=cast(T)3.14159265358979323846264338327950288L;
+enum e(T)=cast(T)2.718281828459045235360287471352662498L;
+
+T exp(T)(T x)if(is(T==float)){
+	if(x<long.min) return 0.0f;
+	if(x>=long.max) return float.infinity;
+	enum N=19;
+	auto xf=x-floor(x);
+	T[N] xn;
+	long[N] fn;
+	xn[0]=1;
+	fn[0]=1;
+	foreach(i;1..N){
+		xn[i]=xn[i-1]*xf;
+		fn[i]=fn[i-1]*i;
+	}
+	T r=0.0f;
+	foreach_reverse(i;0..N)
+		r+=xn[i]/fn[i];
+	return r*e!T^^(cast(long)floor(x));
+}
 
 import std.range,std.algorithm,std.array;
 enum table_size=1000;
@@ -46,7 +66,6 @@ T cos(T)(T x)if(is(T==float)){
 	if(x>pi!T) return cos(min(pi!T,2*pi!T-x));
 	return cubicIntp!(std.math.cos,(x)=>-std.math.sin(x),0,pi!T,cosfTable)(x);
 }
-
 T acos(T)(T x)if(is(T==float)||is(T==double)){
 	return atan2(sqrt(1-x*x),x);
 }
